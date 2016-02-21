@@ -7,6 +7,7 @@ namespace ReviewerProject.Models
 {
     public class Ability
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public Job ProficitentClass { get; set; }
         public int Load { get; set; }
