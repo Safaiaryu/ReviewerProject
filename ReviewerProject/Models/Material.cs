@@ -19,6 +19,6 @@ namespace ReviewerProject.Models
         public int ID { get; set; }
         public string MaterialName { get; set; }
         public string Description { get; set; }
-        public MaterialType MaterialType { get; set; }
+        public MaterialType Type { get; set; }
     }
 }

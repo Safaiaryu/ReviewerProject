@@ -27,7 +27,6 @@ namespace ReviewerProject.Models
             Firearm,
             Recovery,
             Support,
-            Axe,
             Artillery
         }
 
