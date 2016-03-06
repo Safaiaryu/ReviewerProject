@@ -26,5 +26,15 @@ namespace ReviewerProject.Controllers
 
             return View();
         }
+
+        public ActionResult BugFixes()
+        {
+            return View();
+        }
+
+        public ActionResult Forum()
+        {
+            return View();
+        }
     }
 }

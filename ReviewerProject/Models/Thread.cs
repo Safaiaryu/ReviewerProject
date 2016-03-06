@@ -13,9 +13,27 @@ namespace ReviewerProject.Models
             BugFix, 
             Review
         }
+
+        //Ability to search
+        public enum Category
+        {
+            UserInterface, 
+            Party, 
+            Monsters, 
+            Drops, 
+            Upgrades, 
+            Equipment, 
+            CrystalSerges, 
+            QuestObjectives, 
+            Rooms, 
+            Help,
+            Materials
+        }
+
         public int ID { get; set; }
         public string Title { get; set; }
         public Type ThreadType { get; set;}
+        public Category CategoryType { get; set; }
 
         public ICollection<Comment> Reviews { get; set; }
     }

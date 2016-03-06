@@ -2,30 +2,132 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home</title>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/animate.min.css" rel="stylesheet">
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+</head><!--/head-->
+
+<body class="homepage">
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+
+                <div class="item active" style="background-image: url(~/Content/Images/FFE_Icon.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+
+                            <div class="animation">
+                                <div class="slider-img">
+                                    <img src="~/Content/Images/FFE_Icon.jpg" class="img-responsive" width="1200">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!--/.item-->
+
+                <div class="item" style="background-image: url(~/Content/Images/Classes.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+
+                            <div class="animation">
+                                <div class="slider-img">
+                                    <img src="~/Content/Images/Classes.jpg" class="img-responsive" width="1200" height="800">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!--/.item-->
+
+                <div class="item" style="background-image: url(~/Content/Images/Libertas.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+                            <div class="animation">
+                                <div class="slider-img">
+                                    <img src="~/Content/Images/Libertas.jpg" class="img-responsive" width="1200">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.item-->
+            </div><!--/.carousel-inner-->
+        </div><!--/.carousel-->
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </section><!--/#main-slider-->
+
+    <div class="center wow fadeInDown">
+        <br/>
+        <br/>
+
+        <h2>Final Fantasy Explorers</h2>
+        <p class="lead">Final Fantasy Explorers is a fun and adorable little action RPG you can play with your friends. It offers a generous portion of customization, and there are plenty of quests and sidequests to do. Yet there’s nothing remotely special about Final Fantasy Explorers - it’s all very safe and well-trodden territory. That’s okay. Sometimes, it’s enough to just have a good time wandering around fighting monsters.</p>
+        <br/>
+        <p class="lead">There’s a story buried in here somewhere: something something crystals, something something battle powerful guardians called Eidolons, something something explore an island and fight cute monsters. I didn’t mind the lack of meaningful plot, actually – after the confusing tangle of story threads that have plagued the last few Final Fantasy games, it was refreshing to turn off my brain so I could BoP fiends on the head.</p>
+        <br/>
+
+        <h2>Get a Job</h2>
+        <p class="lead">For the most part, combat is good stuff. To start with there’s Final Fantasy’s signature job system, which adds welcome variety to Explorers’ real-time battles by letting you equip a mishmash of weapons and abilities tied to your chosen profession while in town. Getting the literal drop on enemies using the Dragoon’s Jump ability or roasting fools with a Black Mage’s fire spell put a smile on my face. I experienced some rewarding mechanics on top of the hack-and-slash action, such as accumulating points in combat that could be used to trigger a Crystal Surge, a phenomenon that temporarily boosts stats like spell power or movement speed. Being able to briefly transform into well-known Final Fantasy heroes and use their signature moves on the battlefield was a nice bit of fan service, too. I could even borrow an Eidolon’s power, when I was lucky enough to encase its power in equippable magicite.</p>
+        <br/>
+        <p class="lead">Another point in Explorers’ favor is the customization. Spells and skills can be tweaked and tailored however you want using special mutations learned in battle, which can make them much more effective. I stacked a fire spell with cool attributes like Dark and Stop and renamed it Flaming Cheetos, and I’m pleased to report that Flaming Cheetos was wonderfully effective at blinding and immobilizing enemies while they burned to death. The surviving fiends found their counter-attacks ineffective because I had gleefully used harvested items and monster souls from the battlefield to upgrade the stats on my armor – which, by the way, you can swap in and out to create some interesting styles, and even dress your avatar up as famous Final Fantasy characters like Aerith and Lightning (these specialized outfits come with impressive stats). Customization applies to the landscape as well, as you can alter battlefield conditions using a feature called Cataclysm, which can neutralize bad weather or or bring it about. Gaining the power to summon extra powerful monsters like hard-hitting Tonberry Kings also provides a welcome bit of customization, since they won’t appear until you're ready to challenge them.</p>
+        <br/>
+
+        <h2>Multiplayer</h2>
+        <p class="lead">The best way to play Explorers is in co-op with up to three friends, which is a great way to make nearly any game more fun. Explorers makes finding and joining a game a snap too, thanks to an intuitive menu system.</p>
+        <br/>
+        <p class="lead">I was happy to learn that while in co-op I didn’t have to fight my friends (or strangers if I was playing with random people online) for resources. Once enemies are defeated, everyone gets their own loot. Monsters are noticeably harder and rewards greater the more people you play with, which makes for a nice incentive to extend an invite to someone who’s also looking for rare Jenova Cells to unlock Sephiroth’s outfit.</p>
+        <br/>
+        <p class="lead">Human camaraderie is swell and all, but I had nearly as much fun rolling out with my monster buddies I’d created in the hub town’s Monster Lab. And let me tell you: having notoriously nasty enemies like Malboro and Cactaur on your team is pretty sweet. If properly leveled up their abilities can flatten enemies in no time, which reminded me how ridiculously easy this game can be, but sure looked cool. Plus, if I was ever short a player or two in co-op, as team leader I could conveniently fill the empty slots with monsters from my inventory.</p>
+        <br/>
+        <br/>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+            <script src="~/Scripts/jquery.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+            <script src="~/Scripts/jquery.prettyPhoto.js"></script>
+            <script src="~/Scripts/jquery.isotope.min.js"></script>
+            <script src="~/Scripts/main.js"></script>
+            <script src="~/Scripts/wow.min.js"></script>
+</body>
