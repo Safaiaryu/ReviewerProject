@@ -61,7 +61,7 @@
             @Html.DisplayFor(modelItem => item.CategoryType)
         </td>
         <td>
-            @Html.ActionLink("Comment", "Comments/Create", new { id = item.ID })
+            @Html.ActionLink("Comment", "Index", new { controller = "Comments", ThreadID = item.ID })
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

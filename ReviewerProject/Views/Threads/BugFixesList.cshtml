@@ -1,6 +1,13 @@
 ﻿@model IEnumerable<ReviewerProject.Models.Thread>
 
 @{
+    var bugList =
+        from bug in Model
+        where bug.ThreadType == (ReviewerProject.Models.Thread.Type)Enum.Parse(typeof(ReviewerProject.Models.Thread.Type), "BugFix")
+        select bug;
+}
+
+@{
     ViewBag.Title = "BugFixesList";
 }
 
@@ -36,9 +43,6 @@
     <li><a class="btn btn-default" href="/Threads/ReviewList" data-filter=".html">Reviews</a></li>
 </ul><!--/#portfolio-filter-->
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -53,7 +57,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in bugList) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -63,6 +67,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CategoryType)
+        </td>
+        <td>
+            @Html.ActionLink("Comment", "Index", new { controller = "Comments", ThreadID = item.ID })
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

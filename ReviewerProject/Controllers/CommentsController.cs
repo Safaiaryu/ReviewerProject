@@ -17,6 +17,7 @@ namespace ReviewerProject.Controllers
         // GET: Comments
         public ActionResult Index()
         {
+
             return View(db.Comments.ToList());
         }
 

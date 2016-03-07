@@ -18,6 +18,11 @@ namespace ReviewerProject
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Comments",
+                url: "{controller}/{action}/{ThreadID}"
+            );
         }
     }
 }
