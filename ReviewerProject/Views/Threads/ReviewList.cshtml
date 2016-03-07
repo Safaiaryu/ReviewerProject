@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ReviewerProject.Models.Comment>
+﻿@model IEnumerable<ReviewerProject.Models.Thread>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ReviewList";
 }
 
 <head>
@@ -23,7 +23,18 @@
 <br />
 <br />
 
-<h2>Index</h2>
+<h2>Review List</h2>
+
+<p><a class="btn btn-default" href="~/Views/Threads/Create.cshtml">Create New &raquo;</a></p>
+
+<br />
+<br />
+
+<ul class="portfolio-filter text-center">
+    <li><a class="btn btn-default" href="/Threads/Index" data-filter="*">All Threads</a></li>
+    <li><a class="btn btn-default" href="/Threads/BugFixesList" data-filter=".bootstrap">Bug Fixes</a></li>
+    <li><a class="btn btn-default active" href="/Threads/ReviewList" data-filter=".html">Reviews</a></li>
+</ul><!--/#portfolio-filter-->
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -31,10 +42,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ThreadID)
+            @Html.DisplayNameFor(model => model.ThreadType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryType)
         </th>
         <th></th>
     </tr>
@@ -42,10 +56,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Content)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ThreadID)
+            @Html.DisplayFor(modelItem => item.ThreadType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
