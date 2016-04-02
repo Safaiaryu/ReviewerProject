@@ -1,15 +1,10 @@
 ﻿@model IEnumerable<ReviewerProject.Models.Thread>
 
 @{
-    var reviewList =
-        from rev in Model
-        where rev.ThreadType == (ReviewerProject.Models.Thread.Type)Enum.Parse(typeof(ReviewerProject.Models.Thread.Type), "Review")
-        select rev;
+    ViewBag.Title = "ListThreads";
 }
 
-@{
-    ViewBag.Title = "ReviewList";
-}
+<h2>ListThreads</h2>
 
 <head>
     <meta charset="utf-8">
@@ -30,19 +25,20 @@
 <br />
 <br />
 
-<h2>Review List</h2>
-
 <p><a class="btn btn-default" href="/Threads/Create">Create New &raquo;</a></p>
 
 <br />
 <br />
 
 <ul class="portfolio-filter text-center">
-    <li><a class="btn btn-default" href="/Threads/ListThreads" data-filter="*">All Threads</a></li>
+    <li><a class="btn btn-default active" href="/Threads/ListThreads" data-filter="*">All Threads</a></li>
     <li><a class="btn btn-default" href="/Threads/BugFixesList" data-filter=".bootstrap">Bug Fixes</a></li>
-    <li><a class="btn btn-default active" href="/Threads/ReviewList" data-filter=".html">Reviews</a></li>
+    <li><a class="btn btn-default" href="/Threads/ReviewList" data-filter=".html">Reviews</a></li>
 </ul><!--/#portfolio-filter-->
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -57,7 +53,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in reviewList) {
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)

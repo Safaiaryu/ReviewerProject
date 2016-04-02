@@ -12,10 +12,15 @@ namespace ReviewerProject.Controllers
 {
     public class MaterialsController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Materials
         public ActionResult Index()
+        {
+            return View(db.Materials.ToList());
+        }
+
+        public ActionResult ListMaterials()
         {
             return View(db.Materials.ToList());
         }

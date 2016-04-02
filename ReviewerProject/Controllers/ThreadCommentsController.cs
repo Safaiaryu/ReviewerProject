@@ -10,112 +10,107 @@ using ReviewerProject.Models;
 
 namespace ReviewerProject.Controllers
 {
-    public class JobsController : Controller
+    public class ThreadCommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Jobs
+        // GET: ThreadComments
         public ActionResult Index()
         {
-            return View(db.Jobs.ToList());
+            return View(db.Comments.ToList());
         }
 
-        public ActionResult ListJobs()
-        {
-            return View(db.Jobs.ToList());
-        }
-
-        // GET: Jobs/Details/5
+        // GET: ThreadComments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return View(comment);
         }
 
-        // GET: Jobs/Create
+        // GET: ThreadComments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Jobs/Create
+        // POST: ThreadComments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,JobName,BaseHP,BaseAP,BaseLoad,Description,JobProficiencies")] Job job)
+        public ActionResult Create([Bind(Include = "ID,Content,ThreadID")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Jobs.Add(job);
+                db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(job);
+            return View(comment);
         }
 
-        // GET: Jobs/Edit/5
+        // GET: ThreadComments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return View(comment);
         }
 
-        // POST: Jobs/Edit/5
+        // POST: ThreadComments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,JobName,BaseHP,BaseAP,BaseLoad,Description,JobProficiencies")] Job job)
+        public ActionResult Edit([Bind(Include = "ID,Content,ThreadID")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(job).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(job);
+            return View(comment);
         }
 
-        // GET: Jobs/Delete/5
+        // GET: ThreadComments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(job);
+            return View(comment);
         }
 
-        // POST: Jobs/Delete/5
+        // POST: ThreadComments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Job job = db.Jobs.Find(id);
-            db.Jobs.Remove(job);
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -127,6 +122,39 @@ namespace ReviewerProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ListOfCommentsByThread(int ID)
+        {
+            var comments = db.Comments
+                .Where(a => a.ThreadID == ID)
+                .ToList();
+
+            var thread = db.Threads.Find(ID);
+            ViewBag.ThreadTitle = thread.Title;
+            ViewBag.ThreadID = thread.ID;
+
+            return View(comments);
+        }
+
+        //User creates a review
+        [HttpGet]
+        public ActionResult UserCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UserCreate(Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("ListOfCommentsByThread", new { id = comment.ThreadID });
+            }
+
+            return View(comment);
         }
     }
 }

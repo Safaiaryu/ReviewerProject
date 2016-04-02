@@ -6,15 +6,15 @@ namespace ReviewerProject.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ReviewerProject.Models.FFE_Db>
+    internal sealed class Configuration : DbMigrationsConfiguration<ReviewerProject.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "ReviewerProject.Models.FFE_Db";
+            ContextKey = "ReviewerProject.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(ReviewerProject.Models.FFE_Db context)
+        protected override void Seed(ReviewerProject.Models.ApplicationDbContext context)
         {
             new Job
             {

@@ -12,10 +12,15 @@ namespace ReviewerProject.Controllers
 {
     public class AbilitiesController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Abilities
         public ActionResult Index()
+        {
+            return View(db.Abilities.ToList());
+        }
+
+        public ActionResult ListAbilities()
         {
             return View(db.Abilities.ToList());
         }

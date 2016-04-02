@@ -12,10 +12,15 @@ namespace ReviewerProject.Controllers
 {
     public class MonstersController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Monsters
         public ActionResult Index()
+        {
+            return View(db.Monsters.ToList());
+        }
+
+        public ActionResult ListMonsters()
         {
             return View(db.Monsters.ToList());
         }

@@ -12,10 +12,15 @@ namespace ReviewerProject.Controllers
 {
     public class EidolonsController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Eidolons
         public ActionResult Index()
+        {
+            return View(db.Eidolons.ToList());
+        }
+
+        public ActionResult ListEidolons()
         {
             return View(db.Eidolons.ToList());
         }

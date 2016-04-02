@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ReviewerProject.Models.Comment>
+
+@{
+    ViewBag.Title = "Thread Comments";
+}
+
+<h2>Reviews for @ViewBag.ThreadTitle</h2>
+
+<table class="table">
+    @foreach (var review in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => review.Content) <br />
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Add a Comment", "UserCreate", "ThreadComments", new { ThreadID = ViewBag.ThreadID }, null) <br />
+
+@Html.ActionLink("Return to thread list.", "ListBreweries", "Breweries")

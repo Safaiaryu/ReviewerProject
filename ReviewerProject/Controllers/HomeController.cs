@@ -27,5 +27,10 @@ namespace ReviewerProject.Controllers
             return View();
         }
 
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
     }
 }

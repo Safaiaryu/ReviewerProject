@@ -170,6 +170,7 @@
     <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\MonstersController.cs" />
     <Compile Include="Controllers\QuestsController.cs" />
+    <Compile Include="Controllers\ThreadCommentsController.cs" />
     <Compile Include="Controllers\ThreadsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,9 +179,9 @@
     <Compile Include="Migrations\201602281833569_InitialCreate.Designer.cs">
       <DependentUpon>201602281833569_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603062301514_ModelUpdate01.cs" />
-    <Compile Include="Migrations\201603062301514_ModelUpdate01.Designer.cs">
-      <DependentUpon>201603062301514_ModelUpdate01.cs</DependentUpon>
+    <Compile Include="Migrations\201604021810222_IdentityModelsDB.cs" />
+    <Compile Include="Migrations\201604021810222_IdentityModelsDB.Designer.cs">
+      <DependentUpon>201604021810222_IdentityModelsDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ability.cs" />
@@ -315,6 +316,28 @@
     <Content Include="Views\Threads\Index.cshtml" />
     <Content Include="Views\Threads\BugFixesList.cshtml" />
     <Content Include="Views\Threads\ReviewList.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\ThreadComments\Create.cshtml" />
+    <Content Include="Views\ThreadComments\Delete.cshtml" />
+    <Content Include="Views\ThreadComments\Details.cshtml" />
+    <Content Include="Views\ThreadComments\Edit.cshtml" />
+    <Content Include="Views\ThreadComments\Index.cshtml" />
+    <Content Include="Views\ThreadComments\ListOfCommentsByThread.cshtml" />
+    <Content Include="Views\ThreadComments\UserCreate.cshtml" />
+    <Content Include="Views\Threads\ListThreads.cshtml" />
+    <Content Include="Views\Abilities\ListAbilities.cshtml" />
+    <Content Include="Views\Eidolons\ListEidolons.cshtml" />
+    <Content Include="Views\Equipments\ListEquipment.cshtml" />
+    <Content Include="Views\Jobs\ListJobs.cshtml" />
+    <Content Include="Views\Materials\ListMaterials.cshtml" />
+    <Content Include="Views\Monsters\ListMonsters.cshtml" />
+    <Content Include="Views\Quests\ListQuests.cshtml" />
+    <Content Include="Views\Threads\AdminBugFixesList.cshtml" />
+    <Content Include="Views\Threads\AdminReviewList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -330,8 +353,8 @@
     <EmbeddedResource Include="Migrations\201602281833569_InitialCreate.resx">
       <DependentUpon>201602281833569_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603062301514_ModelUpdate01.resx">
-      <DependentUpon>201603062301514_ModelUpdate01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604021810222_IdentityModelsDB.resx">
+      <DependentUpon>201604021810222_IdentityModelsDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

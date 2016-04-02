@@ -12,10 +12,25 @@ namespace ReviewerProject.Controllers
 {
     public class ThreadsController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Threads
         public ActionResult Index()
+        {
+            return View(db.Threads.ToList());
+        }
+
+        public ActionResult AdminBugFixesList()
+        {
+            return View(db.Threads.ToList());
+        }
+
+        public ActionResult AdminReviewList()
+        {
+            return View(db.Threads.ToList());
+        }
+
+        public ActionResult ListThreads()
         {
             return View(db.Threads.ToList());
         }
@@ -133,5 +148,7 @@ namespace ReviewerProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

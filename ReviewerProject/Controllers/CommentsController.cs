@@ -12,7 +12,7 @@ namespace ReviewerProject.Controllers
 {
     public class CommentsController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
         public ActionResult Index()

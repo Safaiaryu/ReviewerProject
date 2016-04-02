@@ -12,10 +12,15 @@ namespace ReviewerProject.Controllers
 {
     public class QuestsController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Quests
         public ActionResult Index()
+        {
+            return View(db.Quests.ToList());
+        }
+
+        public ActionResult ListQuests()
         {
             return View(db.Quests.ToList());
         }

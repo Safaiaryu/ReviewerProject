@@ -12,12 +12,18 @@ namespace ReviewerProject.Controllers
 {
     public class EquipmentsController : Controller
     {
-        private FFE_Db db = new FFE_Db();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Equipments
         public ActionResult Index()
         {
             return View(db.Equipment.ToList());
+        }
+
+        public ActionResult ListEquipment()
+        {
+            return View(db.Equipment.ToList());
+
         }
 
         // GET: Equipments/Details/5

@@ -38,7 +38,7 @@
 <br />
 
 <ul class="portfolio-filter text-center">
-    <li><a class="btn btn-default" href="/Threads/Index" data-filter="*">All Threads</a></li>
+    <li><a class="btn btn-default" href="/Threads/ListThreads" data-filter="*">All Threads</a></li>
     <li><a class="btn btn-default active" href="/Threads/BugFixesList" data-filter=".bootstrap">Bug Fixes</a></li>
     <li><a class="btn btn-default" href="/Threads/ReviewList" data-filter=".html">Reviews</a></li>
 </ul><!--/#portfolio-filter-->
@@ -70,11 +70,6 @@
         </td>
         <td>
             @Html.ActionLink("Comment", "Index", new { controller = "Comments", ThreadID = item.ID })
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
