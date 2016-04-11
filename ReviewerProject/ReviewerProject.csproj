@@ -166,6 +166,7 @@
     <Compile Include="Controllers\EidolonsController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdentityRoleController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\MonstersController.cs" />
@@ -175,13 +176,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602281833569_InitialCreate.cs" />
-    <Compile Include="Migrations\201602281833569_InitialCreate.Designer.cs">
-      <DependentUpon>201602281833569_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604021810222_IdentityModelsDB.cs" />
-    <Compile Include="Migrations\201604021810222_IdentityModelsDB.Designer.cs">
-      <DependentUpon>201604021810222_IdentityModelsDB.cs</DependentUpon>
+    <Compile Include="Migrations\201604022054005_ModelsDB.cs" />
+    <Compile Include="Migrations\201604022054005_ModelsDB.Designer.cs">
+      <DependentUpon>201604022054005_ModelsDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ability.cs" />
@@ -206,9 +203,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\abilities.jpg" />
+    <Content Include="Content\Images\About Us.jpg" />
+    <Content Include="Content\Images\chocobo.jpg" />
     <Content Include="Content\Images\Classes.jpg" />
+    <Content Include="Content\Images\eidolon.jpg" />
+    <Content Include="Content\Images\equipment.jpg" />
+    <Content Include="Content\Images\FFExplorersjob_monk_cg.png" />
     <Content Include="Content\Images\FFE_Icon.jpg" />
     <Content Include="Content\Images\Libertas.jpg" />
+    <Content Include="Content\Images\Materials.jpg" />
     <Content Include="Content\main.css" />
     <Content Include="Content\prettyPhoto.css" />
     <Content Include="Content\responsive.css" />
@@ -219,6 +223,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\Radtke18-FinalFantasyExplorers.pubxml" />
+    <None Include="Properties\PublishProfiles\Radtke18-ReviewerApp.pubxml" />
     <None Include="Properties\PublishProfiles\Radtke18-ReviewerProject %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Radtke18-ReviewerProject.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -239,7 +244,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -338,6 +345,12 @@
     <Content Include="Views\Quests\ListQuests.cshtml" />
     <Content Include="Views\Threads\AdminBugFixesList.cshtml" />
     <Content Include="Views\Threads\AdminReviewList.cshtml" />
+    <Content Include="Views\IdentityRole\Index.cshtml" />
+    <Content Include="Views\IdentityRole\Details.cshtml" />
+    <Content Include="Views\IdentityRole\Create.cshtml" />
+    <Content Include="Views\IdentityRole\Edit.cshtml" />
+    <Content Include="Views\IdentityRole\Delete.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,11 +363,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602281833569_InitialCreate.resx">
-      <DependentUpon>201602281833569_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604021810222_IdentityModelsDB.resx">
-      <DependentUpon>201604021810222_IdentityModelsDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604022054005_ModelsDB.resx">
+      <DependentUpon>201604022054005_ModelsDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

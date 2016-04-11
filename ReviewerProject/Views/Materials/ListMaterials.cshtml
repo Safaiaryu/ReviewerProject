@@ -3,8 +3,42 @@
 @{
     ViewBag.Title = "ListMaterials";
 }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Materials</title>
 
-<h2>ListMaterials</h2>
+    <!-- core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/animate.min.css" rel="stylesheet">
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+</head><!--/head-->
+<br />
+<br />
+<br />
+<h2>Materials</h2>
+
+<br />
+<div class="container">
+    <img src="~/Content/Images/Materials.jpg" alt="Eidolon" class="floatLeft bodyImg" />
+    <p>
+        While your out exploring you will see 'examine' spots all over the place. These
+        are areas where you can find materials to craft new equipment. These items can 
+        also be used to upgrade already made equipment. Vast amounts are needed in a vast
+        variety to be able to craft the many pieces of gear that you can get in the game. 
+        Make sure to never pass one by when you can help it. It can take many run throughs of
+        a quest to get enough of a single material. 
+    </p>
+</div>
+
+<br />
+<br />
+
 
 <p>
     @Html.ActionLink("Create New", "Create")

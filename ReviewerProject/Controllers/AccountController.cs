@@ -40,6 +40,12 @@ namespace ReviewerProject.Controllers
             return View(model);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
         public ActionResult Details(String userName = null)
         {
             var db = new ApplicationDbContext();
@@ -186,7 +192,7 @@ namespace ReviewerProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

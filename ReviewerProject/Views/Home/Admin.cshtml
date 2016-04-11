@@ -3,6 +3,24 @@
     ViewBag.Title = "Admin";
 }
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home</title>
+
+    <!-- core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/animate.min.css" rel="stylesheet">
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+</head><!--/head-->
+<br />
+<br />
+<br />
 <h1>Admin</h1>
 
 <div class="row">
@@ -18,6 +36,10 @@
         <div>
             <h2>Users</h2>
             @Html.ActionLink("Click here for a list of all users.", "Index", "Account")
+        </div>
+        <div>
+            <h2>User Roles</h2>
+            @Html.ActionLink("Click here for a list of all user roles.", "Index", "IdentityRole")
         </div>
         <div>
             <h2>Abilities Info</h2>

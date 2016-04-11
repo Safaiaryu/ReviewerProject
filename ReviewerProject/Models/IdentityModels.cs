@@ -48,5 +48,7 @@ namespace ReviewerProject.Models
         //App classes
         public DbSet<Thread> Threads { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        //public System.Data.Entity.DbSet<ReviewerProject.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

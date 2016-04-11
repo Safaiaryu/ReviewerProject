@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<h2>User Role Administration</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => role.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = role.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = role.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = role.Id })
+            </td>
+        </tr>
+    }
+
+</table>

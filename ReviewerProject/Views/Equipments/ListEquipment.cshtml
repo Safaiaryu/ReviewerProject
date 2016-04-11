@@ -3,8 +3,41 @@
 @{
     ViewBag.Title = "ListEquipment";
 }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Equipment</title>
 
-<h2>ListEquipment</h2>
+    <!-- core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/animate.min.css" rel="stylesheet">
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+</head><!--/head-->
+<br />
+<br />
+<br />
+<h2>Equipment</h2>
+
+<br />
+<div class="container">
+    <img src="~/Content/Images/equipment.jpg" alt="Job" class="floatLeft bodyImg" />
+    <p>
+        Final Fantasy Explorers has a vast array of available equipment. Some equipment is exclusive to 
+        individual classes and can only be obtained through special quests done by said class. It is always
+        worth upgrading your armor and weapons because almost any weapon has the potential to be strong. So
+        go for the ability that you find suits you the best. Don't be afraid of going for vanity either. The 
+        only thing to look out for is the load bonus. Some equipment can make the difference in the level of
+        abilities that you can cast. 
+    </p>
+</div>
+
+<br />
+<br />
 
 <p>
     @Html.ActionLink("Create New", "Create")

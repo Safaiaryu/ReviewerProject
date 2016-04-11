@@ -7,13 +7,13 @@ namespace ReviewerProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class IdentityModelsDB : IMigrationMetadata
+    public sealed partial class ModelsDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IdentityModelsDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModelsDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604021810222_IdentityModelsDB"; }
+            get { return "201604022054005_ModelsDB"; }
         }
         
         string IMigrationMetadata.Source

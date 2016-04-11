@@ -3,8 +3,42 @@
 @{
     ViewBag.Title = "ListQuests";
 }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Quests</title>
 
-<h2>ListQuests</h2>
+    <!-- core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/animate.min.css" rel="stylesheet">
+    <link href="~/Content/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+</head><!--/head-->
+<br />
+<br />
+<br />
+<h2>Quests</h2>
+
+<br />
+<div class="container">
+    <img src="~/Content/Images/Libertas.jpg" alt="Eidolon" class="floatLeft bodyImg" />
+    <p>
+        Quests unlock most things in the game and gives you rewards for completing them. Each quest has a
+        time limit, and you can't switch Jobs when you go to the quest area.
+    </p>
+    <p>
+        You get bonus rewards based on how fast you complete a quest and how many times you needed to 
+        revive. If time runs out, the quest automatically fails. If you fail a mission, you can keep any 
+        items you found during the quest, but you don't get the completion rewards.
+    </p>
+</div>
+
+<br />
+<br />
 
 <p>
     @Html.ActionLink("Create New", "Create")

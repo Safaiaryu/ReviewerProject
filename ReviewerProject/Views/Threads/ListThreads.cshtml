@@ -4,14 +4,12 @@
     ViewBag.Title = "ListThreads";
 }
 
-<h2>ListThreads</h2>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home</title>
+    <title>Threads</title>
 
     <!-- core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +23,10 @@
 <br />
 <br />
 
-<p><a class="btn btn-default" href="/Threads/Create">Create New &raquo;</a></p>
+<h2>List Threads</h2>
 
-<br />
+<p><a class="btn btn-default" href="/Threads/Create">Create New &raquo;</a></p>
+<br/>
 <br />
 
 <ul class="portfolio-filter text-center">
@@ -36,9 +35,6 @@
     <li><a class="btn btn-default" href="/Threads/ReviewList" data-filter=".html">Reviews</a></li>
 </ul><!--/#portfolio-filter-->
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -65,7 +61,7 @@
             @Html.DisplayFor(modelItem => item.CategoryType)
         </td>
         <td>
-            @Html.ActionLink("Comment", "Index", new { controller = "Comments", ThreadID = item.ID })
+            @Html.ActionLink("Comment", "UserCreate", new { controller = "ThreadComments", ThreadID = item.ID })
         </td>
     </tr>
 }
