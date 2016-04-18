@@ -165,6 +165,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\EidolonsController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityRoleController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
@@ -173,12 +174,13 @@
     <Compile Include="Controllers\QuestsController.cs" />
     <Compile Include="Controllers\ThreadCommentsController.cs" />
     <Compile Include="Controllers\ThreadsController.cs" />
+    <Compile Include="CustomAttributes\AuthorizeOrRedirectAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604022054005_ModelsDB.cs" />
-    <Compile Include="Migrations\201604022054005_ModelsDB.Designer.cs">
-      <DependentUpon>201604022054005_ModelsDB.cs</DependentUpon>
+    <Compile Include="Migrations\201604172123222_UserModelUpdate.cs" />
+    <Compile Include="Migrations\201604172123222_UserModelUpdate.Designer.cs">
+      <DependentUpon>201604172123222_UserModelUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ability.cs" />
@@ -351,6 +353,11 @@
     <Content Include="Views\IdentityRole\Edit.cshtml" />
     <Content Include="Views\IdentityRole\Delete.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Account\ViewUserRoles.cshtml" />
+    <Content Include="Views\Account\AddRoleToUser.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Home\GameElementAdmin.cshtml" />
+    <Content Include="Views\Account\ProfileEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,8 +370,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604022054005_ModelsDB.resx">
-      <DependentUpon>201604022054005_ModelsDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604172123222_UserModelUpdate.resx">
+      <DependentUpon>201604172123222_UserModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

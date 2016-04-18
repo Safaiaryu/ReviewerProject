@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ReviewerProject.Models;
+using ReviewerProject.CustomAttribute;
 
 namespace ReviewerProject.Controllers
 {
@@ -15,6 +16,7 @@ namespace ReviewerProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Quests
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult Index()
         {
             return View(db.Quests.ToList());
@@ -41,6 +43,7 @@ namespace ReviewerProject.Controllers
         }
 
         // GET: Quests/Create
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult Create()
         {
             return View();
@@ -51,6 +54,7 @@ namespace ReviewerProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult Create([Bind(Include = "ID,Title,StarLevel,Time")] Quest quest)
         {
             if (ModelState.IsValid)
@@ -64,6 +68,7 @@ namespace ReviewerProject.Controllers
         }
 
         // GET: Quests/Edit/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +88,7 @@ namespace ReviewerProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult Edit([Bind(Include = "ID,Title,StarLevel,Time")] Quest quest)
         {
             if (ModelState.IsValid)
@@ -95,6 +101,7 @@ namespace ReviewerProject.Controllers
         }
 
         // GET: Quests/Delete/5
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +119,7 @@ namespace ReviewerProject.Controllers
         // POST: Quests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin,Game Element Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Quest quest = db.Quests.Find(id);

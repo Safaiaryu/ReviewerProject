@@ -26,16 +26,28 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UsernameSortParam})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.LastSortParam })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -56,12 +68,16 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { userName = item.UserName }) |
                 @Html.ActionLink("Details", "Details", new { userName = item.UserName }) |
-                @Html.ActionLink("Delete", "Delete", new { userName = item.UserName })
+                @Html.ActionLink("Delete", "Delete", new { userName = item.UserName }) |
+                @Html.ActionLink("Roles", "ViewUserRoles", new { userName = item.UserName })
             </td>
         </tr>
     }

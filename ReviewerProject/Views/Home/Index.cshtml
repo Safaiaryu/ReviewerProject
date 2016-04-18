@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<ReviewerProject.Models.Job>
+
+@{
+    var content = Model.First();
 }
 
 <head>
@@ -35,7 +37,6 @@
                                 <div class="carousel-content">
                                     <h1 class="">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
                                     <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
                                 </div>
                             </div>
 
@@ -56,7 +57,6 @@
                                 <div class="carousel-content">
                                     <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
                                     <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
                                 </div>
                             </div>
 
@@ -77,7 +77,6 @@
                                 <div class="carousel-content">
                                     <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
                                     <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
                                 </div>
                             </div>
                             <div class="animation">
@@ -99,8 +98,10 @@
     </section><!--/#main-slider-->
     <div class="container">
         <aside class="floatRight size">
-            <h2>Final Fantasy XV</h2>
-            <p>The story centers around Noctis Lucis Caelum, Crown Prince and protector of Lucis, the last remaining kingdom in the world with control over crystals. The game's focus is to examine the characters' humanity and distinguish it from the fantasy setting in other titles in the series. The story focuses on friendship, destiny and legacy.</p>
+            <h2>Final Fantasy Jobs</h2>
+            @*<p>The story centers around Noctis Lucis Caelum, Crown Prince and protector of Lucis, the last remaining kingdom in the world with control over crystals. The game's focus is to examine the characters' humanity and distinguish it from the fantasy setting in other titles in the series. The story focuses on friendship, destiny and legacy.</p>*@
+            <h3>@content.JobName</h3>
+            <p>@content.Description</p>
         </aside>
         <div class="center wow fadeInDown">
             <h2>Final Fantasy Explorers</h2>

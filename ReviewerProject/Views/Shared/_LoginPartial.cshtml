@@ -3,14 +3,26 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName(), "Manage", "Account", routeValues: new { area = "" },  htmlAttributes: new {title = "Manage" })*@
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName(), "Edit", "Account", routeValues: new { area = "" },  new { userName = User.Identity.GetUserName() })*@
+                @Html.ActionLink("Hello " + User.Identity.GetUserName(), "ProfileEdit", new { controller = "Account", userName = User.Identity.GetUserName() })
+            </li>
+
+            @if (User.IsInRole("Site Admin"))
+            {
+                <li>@Html.ActionLink("Site Admin", "Admin", "Home")</li>
+            }
+            else if (User.IsInRole("Game Element Admin"))
+            {
+                <li>@Html.ActionLink("Game Element Admin", "GameElementAdmin", "Home")</li>
+            }
+
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
@@ -18,6 +30,5 @@ else
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
     </ul>
 }

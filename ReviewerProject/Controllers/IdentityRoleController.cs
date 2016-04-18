@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ReviewerProject.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ReviewerProject.CustomAttribute;
 
 namespace ReviewerProject.Controllers
 {
@@ -16,6 +17,8 @@ namespace ReviewerProject.Controllers
         // GET: IdentityRole
 
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Index()
         {
             return View(db.Roles.ToList());
@@ -38,6 +41,7 @@ namespace ReviewerProject.Controllers
             return View(role);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create()
         {
             return View();
@@ -45,6 +49,7 @@ namespace ReviewerProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create([Bind(Include = "Id,Name")] IdentityRole role)
         {
             if(ModelState.IsValid)
@@ -57,6 +62,7 @@ namespace ReviewerProject.Controllers
             return View(role);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit(string id)
         {
             if(id == null)
@@ -74,6 +80,7 @@ namespace ReviewerProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit([Bind(Include = "ID, Name")] IdentityRole role)
         {
             if(ModelState.IsValid)
@@ -86,6 +93,7 @@ namespace ReviewerProject.Controllers
             return View(role);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Delete(string id)
         {
             if(id == null)
@@ -104,6 +112,7 @@ namespace ReviewerProject.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             IdentityRole identityRoleTemp = db.Roles.Find(id);

@@ -14,6 +14,7 @@ using Owin;
 using System.Net;
 using ReviewerProject.Models;
 using System.Data.Entity;
+using ReviewerProject.CustomAttribute;
 
 namespace ReviewerProject.Controllers
 {
@@ -26,10 +27,41 @@ namespace ReviewerProject.Controllers
         {
         }
 
-        public ActionResult Index()
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.UsernameSortParam = String.IsNullOrEmpty(sortOrder) ? "username_asc" : "";
+            ViewBag.NameSortParam = sortOrder == "first_asc" ? "first_desc" : "first_asc";
+            ViewBag.LastSortParam = sortOrder == "last_asc" ? "last_desc" : "last_asc";
+
             var db = new ApplicationDbContext();
-            var users = db.Users;
+            var users = from u in db.Users
+                            select u;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.LastName.Contains(searchString)
+                                       || u.FirstName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "username_asc":
+                    users = users.OrderBy(u => u.UserName);
+                    break;
+                case "first_desc":
+                    users = users.OrderByDescending(u => u.FirstName);
+                    break;
+                case "last_desc":
+                    users = users.OrderByDescending(u => u.LastName);
+                    break;
+                case "first_asc":
+                    users = users.OrderBy(u => u.FirstName);
+                    break;
+                case "last_asc":
+                    users = users.OrderBy(u => u.LastName);
+                    break;
+            }
+
             var model = new System.Collections.Generic.List<EditUserViewModel>();
 
             foreach (var user in users)
@@ -40,9 +72,38 @@ namespace ReviewerProject.Controllers
             return View(model);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public async Task<ActionResult> Create(CreateUserViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Birthday = model.Birthday
+                };
+
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if(result.Succeeded)
+                {
+                    UserManager.AddToRole(user.Id, "User");
+
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
+            }
+            return View(model);
         }
 
 
@@ -60,6 +121,7 @@ namespace ReviewerProject.Controllers
             return View(model);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Edit(string userName = null)
         {
             if (userName == null)
@@ -81,7 +143,8 @@ namespace ReviewerProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserName, LastName, FirstName, Email")] EditUserViewModel userModel)
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public ActionResult Edit([Bind(Include = "UserName, LastName, FirstName, Birthday, Email, Password, ConfirmPassword")] EditUserViewModel userModel)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +153,11 @@ namespace ReviewerProject.Controllers
 
                 user.FirstName = userModel.FirstName;
                 user.LastName = userModel.LastName;
+                user.Birthday = userModel.Birthday;
                 user.Email = userModel.Email;
+
+                PasswordHasher ph = new PasswordHasher();
+                user.PasswordHash = ph.HashPassword(userModel.Password);
 
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
@@ -100,6 +167,51 @@ namespace ReviewerProject.Controllers
             return View(userModel);
         }
 
+        public ActionResult ProfileEdit(string userName = null)
+        {
+            if (userName == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var db = new ApplicationDbContext();
+            var user = db.Users.First(u => u.UserName == userName);
+            var model = new EditUserViewModel(user);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ProfileEdit([Bind(Include = "UserName, LastName, FirstName, Birthday, Email, Password, ConfirmPassword")] EditUserViewModel userModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new ApplicationDbContext();
+                var user = db.Users.First(u => u.UserName == userModel.UserName);
+
+                user.FirstName = userModel.FirstName;
+                user.LastName = userModel.LastName;
+                user.Birthday = userModel.Birthday;
+                user.Email = userModel.Email;
+
+                PasswordHasher ph = new PasswordHasher();
+                user.PasswordHash = ph.HashPassword(userModel.Password);
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(userModel);
+        }
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult Delete(string userName = null)
         {
             var db = new ApplicationDbContext();
@@ -116,6 +228,7 @@ namespace ReviewerProject.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("Delete")]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
         public ActionResult DeleteConfirmed(string userName)
         {
             var db = new ApplicationDbContext();
@@ -123,6 +236,162 @@ namespace ReviewerProject.Controllers
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public ActionResult ViewUserRoles(string userName = null)
+        {
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                List<string> userRoles;
+
+                using (var context = new ApplicationDbContext())
+                {
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
+
+                    var user = userManager.FindByName(userName);
+                    if(user == null)
+                    {
+                        throw new Exception("User not found!");
+                    }
+
+                    var userRoleIds = (from r in user.Roles select r.RoleId);
+                    userRoles = (from id in userRoleIds
+                                    let r = roleManager.FindById(id)
+                                     select r.Name).ToList();
+                }
+
+                ViewBag.UserName = userName;
+                ViewBag.RolesForUser = userRoles;
+            }
+
+            return View();
+        }
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public ActionResult DeleteRoleForUser(string userName = null, string roleName = null)
+        {
+            if((!string.IsNullOrWhiteSpace(userName)) || (!string.IsNullOrWhiteSpace(roleName)))
+            {
+                List<string> userRoles;
+
+                using(var context = new ApplicationDbContext())
+                {
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
+                    var user = userManager.FindByName(userName);
+
+                    if (user == null)
+                    {
+                        throw new Exception("User not found!");
+                    }
+
+                    if(userManager.IsInRole(user.Id, roleName))
+                    {
+                        userManager.RemoveFromRole(user.Id, roleName);
+                        context.SaveChanges();
+                    }
+
+                    var userRoleIds = (from r in user.Roles select r.RoleId);
+                    userRoles = (from id in userRoleIds
+                                 let r = roleManager.FindById(id)
+                                 select r.Name).ToList();
+                }
+
+                ViewBag.UserName = userName;
+                ViewBag.RolesForUser = userRoles;
+
+                return View("ViewUserRoles");
+            }
+
+            else
+            {
+                return View("Index");
+            }
+        }
+
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public ActionResult AddRoleToUser(string userName = null)
+        {
+            List<string> roles;
+
+            using (var context = new ApplicationDbContext())
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                roles = (from r in roleManager.Roles select r.Name).ToList();
+            }
+
+            ViewBag.Roles = new SelectList(roles);
+            ViewBag.UserName = userName;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Site Admin")]
+        public ActionResult AddRoleToUser(string roleName, string userName)
+        {
+            List<string> roles;
+
+            using (var context = new ApplicationDbContext())
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var user = userManager.FindByName(userName);
+
+                if (user == null)
+                {
+                    throw new Exception("User not found!");
+                }
+
+                if (roleManager == null)
+                {
+                    throw new Exception("Roles not found!");
+                }
+
+                var role = roleManager.FindByName(roleName);
+                if (userManager.IsInRole(user.Id, role.Name))
+                {
+                    ViewBag.ErrorMessage = "This user already has the role specified!";
+
+                    roles = (from r in roleManager.Roles select r.Name).ToList();
+                    ViewBag.Roles = new SelectList(roles);
+
+                    ViewBag.UserName = userName;
+
+                    return View();
+                }
+                else
+                {
+                    userManager.AddToRole(user.Id, role.Name);
+                    context.SaveChanges();
+
+                    List<string> userRoles;
+                    var userRoleIds = (from r in user.Roles select r.RoleId);
+                    userRoles = (from id in userRoleIds
+                                 let r = roleManager.FindById(id)
+                                 select r.Name).ToList();
+
+                    ViewBag.UserName = userName;
+                    ViewBag.RolesForUser = userRoles;
+
+                    return View("ViewUserRoles");
+                }
+                
+            }
+
         }
 
         public AccountController(ApplicationUserManager userManager)
@@ -192,7 +461,7 @@ namespace ReviewerProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName};
+                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, Birthday = model.Birthday, LastName = model.LastName};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
