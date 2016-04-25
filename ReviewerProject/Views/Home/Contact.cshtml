@@ -15,6 +15,21 @@
     <link href="~/Content/prettyPhoto.css" rel="stylesheet">
     <link href="~/Content/main.css" rel="stylesheet">
     <link href="~/Content/responsive.css" rel="stylesheet">
+
+    @* Code from W3schools tutorials *@
+    @* http://www.w3schools.com/googleapi/google_maps_basic.asp *@
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        function initialize() {
+            var mapProp = {
+                center: new google.maps.LatLng(44.7646836, -85.5843242),
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </head><!--/head-->
 <br />
 <br />
@@ -33,6 +48,10 @@
     <abbr title="Phone">P:</abbr>
     425.555.0100
 </address>
+
+<body>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
+</body>
 
 <div class="col-md-4 col-sm-12">
     <div class="contact-form">

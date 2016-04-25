@@ -30,5 +30,6 @@ namespace ReviewerProject.Models
 
         [Display(Name = "Type")]
         public MaterialType Type { get; set; }
+
     }
 }

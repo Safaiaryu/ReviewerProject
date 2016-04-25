@@ -85,3 +85,7 @@ tbody td:hover::after {
     width: 100%;
     z-index: -1;
 }
+
+.gameTipImg{
+    max-width:200px;
+}

@@ -35,6 +35,9 @@ namespace ReviewerProject.Models
         public Type ThreadType { get; set;}
         public Category CategoryType { get; set; }
 
+        public string UserID { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
         public ICollection<Comment> Reviews { get; set; }
     }
 }

@@ -73,6 +73,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
+            @*<td>
+                @Html.ActionLink("Threads", "ListOfThreadsByUser", new { controller = "Threads", id = ViewBag.UserID }, null) |
+                @Html.ActionLink("Comments", "ListOfCommentsByUser", new { controller = "ThreadComments", id = ViewBag.UserID }, null)
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { userName = item.UserName }) |
                 @Html.ActionLink("Details", "Details", new { userName = item.UserName }) |

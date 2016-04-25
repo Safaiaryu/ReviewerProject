@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System;
+using System.Collections.Generic;
 
 namespace ReviewerProject.Models
 {
@@ -19,6 +20,10 @@ namespace ReviewerProject.Models
 
         [DataType(DataType.Date)]
         public DateTime Birthday {  get; set;}
+
+        public List<Thread> Threads { get; set; }
+        public List<Comment> Comment { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -52,6 +57,8 @@ namespace ReviewerProject.Models
         //App classes
         public DbSet<Thread> Threads { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        public System.Data.Entity.DbSet<ReviewerProject.Models.GameTips> GameTips { get; set; }
 
     }
 }

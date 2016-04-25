@@ -29,5 +29,10 @@ namespace ReviewerProject.Models
 
         [Display(Name = "Rewards")]
         public List<string> Rewards { get; set; }
+
+
+        [Display(Name = "Tips")]
+        public List<GameTips> Tips { get; set; }
+
     }
 }

@@ -82,6 +82,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.JobProficiencies)
         </td>
+        <td>
+            @Html.ActionLink("Tips", "ListOfTipsByJobUser", new { controller = "GameTips", id = item.ID }, null)
+        </td>
     </tr>
 }
 

@@ -166,6 +166,7 @@
     <Compile Include="Controllers\EidolonsController.cs" />
     <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GameTipsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityRoleController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
@@ -182,6 +183,46 @@
     <Compile Include="Migrations\201604172123222_UserModelUpdate.Designer.cs">
       <DependentUpon>201604172123222_UserModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604241730097_GameTips.cs" />
+    <Compile Include="Migrations\201604241730097_GameTips.Designer.cs">
+      <DependentUpon>201604241730097_GameTips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604241733206_GameTips02.cs" />
+    <Compile Include="Migrations\201604241733206_GameTips02.Designer.cs">
+      <DependentUpon>201604241733206_GameTips02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604241748410_GameTips03.cs" />
+    <Compile Include="Migrations\201604241748410_GameTips03.Designer.cs">
+      <DependentUpon>201604241748410_GameTips03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604241759050_GameTips04.cs" />
+    <Compile Include="Migrations\201604241759050_GameTips04.Designer.cs">
+      <DependentUpon>201604241759050_GameTips04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604241820315_GameTips05.cs" />
+    <Compile Include="Migrations\201604241820315_GameTips05.Designer.cs">
+      <DependentUpon>201604241820315_GameTips05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604241843371_GameTips06.cs" />
+    <Compile Include="Migrations\201604241843371_GameTips06.Designer.cs">
+      <DependentUpon>201604241843371_GameTips06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604242150150_UserUpdate01.cs" />
+    <Compile Include="Migrations\201604242150150_UserUpdate01.Designer.cs">
+      <DependentUpon>201604242150150_UserUpdate01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604242153311_UserUpdate02.cs" />
+    <Compile Include="Migrations\201604242153311_UserUpdate02.Designer.cs">
+      <DependentUpon>201604242153311_UserUpdate02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604242207574_UserUpdate03.cs" />
+    <Compile Include="Migrations\201604242207574_UserUpdate03.Designer.cs">
+      <DependentUpon>201604242207574_UserUpdate03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604242252558_UserUpdate04.cs" />
+    <Compile Include="Migrations\201604242252558_UserUpdate04.Designer.cs">
+      <DependentUpon>201604242252558_UserUpdate04.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -189,6 +230,7 @@
     <Compile Include="Models\ElementTypeEnum.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\FFE_Db.cs" />
+    <Compile Include="Models\GameTips.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Material.cs" />
@@ -358,9 +400,23 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Home\GameElementAdmin.cshtml" />
     <Content Include="Views\Account\ProfileEdit.cshtml" />
+    <Content Include="Views\GameTips\Create.cshtml" />
+    <Content Include="Views\GameTips\Delete.cshtml" />
+    <Content Include="Views\GameTips\Details.cshtml" />
+    <Content Include="Views\GameTips\Edit.cshtml" />
+    <Content Include="Views\GameTips\Index.cshtml" />
+    <Content Include="Views\GameTips\ListOfTipsByEidolon.cshtml" />
+    <Content Include="Views\GameTips\ListOfTipsByJob.cshtml" />
+    <Content Include="Views\GameTips\ListOfTipsByQuest.cshtml" />
+    <Content Include="Views\GameTips\ListOfTipsByEidolonUser.cshtml" />
+    <Content Include="Views\GameTips\ListOfTipsByJobUser.cshtml" />
+    <Content Include="Views\GameTips\ListOfTipsByQuestUser.cshtml" />
+    <Content Include="Views\ThreadComments\ListOfCommentsByUser.cshtml" />
+    <Content Include="Views\Threads\ListOfThreadsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\GameTips\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -372,6 +428,36 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604172123222_UserModelUpdate.resx">
       <DependentUpon>201604172123222_UserModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604241730097_GameTips.resx">
+      <DependentUpon>201604241730097_GameTips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604241733206_GameTips02.resx">
+      <DependentUpon>201604241733206_GameTips02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604241748410_GameTips03.resx">
+      <DependentUpon>201604241748410_GameTips03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604241759050_GameTips04.resx">
+      <DependentUpon>201604241759050_GameTips04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604241820315_GameTips05.resx">
+      <DependentUpon>201604241820315_GameTips05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604241843371_GameTips06.resx">
+      <DependentUpon>201604241843371_GameTips06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604242150150_UserUpdate01.resx">
+      <DependentUpon>201604242150150_UserUpdate01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604242153311_UserUpdate02.resx">
+      <DependentUpon>201604242153311_UserUpdate02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604242207574_UserUpdate03.resx">
+      <DependentUpon>201604242207574_UserUpdate03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604242252558_UserUpdate04.resx">
+      <DependentUpon>201604242252558_UserUpdate04.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

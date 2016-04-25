@@ -28,5 +28,8 @@ namespace ReviewerProject.Models
 
         [Display(Name="Quests Found")]
         public List<Quest> QuestsFound { get; set; }
+
+        [Display(Name="Tips")]
+        public List<GameTips> Tips { get; set; }
     }
 }

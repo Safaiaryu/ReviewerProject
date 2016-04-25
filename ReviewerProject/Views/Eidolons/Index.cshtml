@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home</title>
+    <title>Eidolons</title>
 
     <!-- core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
@@ -51,6 +51,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MagiciteAbilty)
+        </td>
+        <td>
+            @Html.ActionLink("Tips", "ListOfTipsByEidolon", new { controller = "GameTips", id = item.ID }, null)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

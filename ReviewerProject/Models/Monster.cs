@@ -57,5 +57,6 @@ namespace ReviewerProject.Models
 
         [Display(Name = "Can Capture")]
         public bool CanCapture { get; set; }
+
     }
 }

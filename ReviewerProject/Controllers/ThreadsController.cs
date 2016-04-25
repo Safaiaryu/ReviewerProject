@@ -7,13 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ReviewerProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ReviewerProject.Controllers
 {
     public class ThreadsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ApplicationUserManager _userManager;
         // GET: Threads
         public ActionResult Index()
         {
@@ -45,6 +46,35 @@ namespace ReviewerProject.Controllers
             return View(db.Threads.ToList());
         }
 
+
+        public ActionResult ListOfThreadsByUser(string ID, string sortOrder, string searchString)
+        {
+            ViewBag.TitleSortParam = String.IsNullOrEmpty(sortOrder) ? "username_asc" : "";
+            //var threads = db.Threads
+            //    .Where(a => a.User.Id == ID)
+            //    .ToList();
+
+            var threads = from u in db.Threads
+                           select u;
+
+            var user = db.Users.Find(ID);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                threads = threads.Where(u => u.Title.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "username_asc":
+                    threads = threads.OrderBy(u => u.Title);
+                    break;
+            }
+
+            ViewBag.UserName = user.UserName;
+            return View(threads.Where(a => a.User.Id == ID));
+        }
+
         // GET: Threads/Details/5
         public ActionResult Details(int? id)
         {
@@ -71,10 +101,11 @@ namespace ReviewerProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,ThreadType,CategoryType")] Thread thread)
+        public ActionResult Create([Bind(Include = "ID,Title,ThreadType,CategoryType,UserID")] Thread thread)
         {
             if (ModelState.IsValid)
             {
+                thread.UserID = User.Identity.GetUserId();
                 db.Threads.Add(thread);
                 db.SaveChanges();
                 return RedirectToAction("Index");

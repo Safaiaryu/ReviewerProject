@@ -38,5 +38,6 @@ namespace ReviewerProject.Models
 
         [Display(Name = "Description")]
         public string Description { get; set; }
+
     }
 }

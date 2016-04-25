@@ -183,6 +183,8 @@ namespace ReviewerProject.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.UserID = User.Identity.GetUserId();
+
             return View(model);
         }
 

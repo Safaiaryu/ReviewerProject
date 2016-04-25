@@ -59,5 +59,9 @@ namespace ReviewerProject.Models
 
         [Display(Name = "Job Proficiencies")]
         public Proficiencies JobProficiencies { get; set; }
+
+
+        [Display(Name = "Tips")]
+        public List<GameTips> Tips { get; set; }
     }
 }

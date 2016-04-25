@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ReviewerProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ReviewerProject.Controllers
 {
@@ -19,6 +20,37 @@ namespace ReviewerProject.Controllers
         {
             return View(db.Comments.ToList());
         }
+
+
+        public ActionResult ListOfCommentsByUser(string ID, string sortOrder, string searchString)
+        {
+            ViewBag.ContentSortParam = String.IsNullOrEmpty(sortOrder) ? "username_asc" : "";
+
+            //var comments = db.Comments
+            //    .Where(a => a.User.Id == ID)
+            //    .ToList();
+
+            var comments = from u in db.Comments
+                        select u;
+
+            var user = db.Users.Find(ID);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                comments = comments.Where(u => u.Content.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "username_asc":
+                    comments = comments.OrderBy(u => u.Content);
+                    break;
+            }
+
+            ViewBag.UserName = user.UserName;
+            return View(comments.Where(a => a.User.Id == ID));
+        }
+
 
         // GET: ThreadComments/Details/5
         public ActionResult Details(int? id)
@@ -46,10 +78,11 @@ namespace ReviewerProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Content,ThreadID")] Comment comment)
+        public ActionResult Create([Bind(Include = "ID,Content,ThreadID,UserID")] Comment comment)
         {
             if (ModelState.IsValid)
             {
+                comment.UserID = User.Identity.GetUserId();
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -136,6 +169,12 @@ namespace ReviewerProject.Controllers
 
             return View(comments);
         }
+
+        //public ActionResult ListOfCommentsByUser(int ID)
+        //{
+        //    var comments = db.Comments
+        //        .Where(a => a.User.ID == ID)
+        //}
 
         //User creates a review
         [HttpGet]

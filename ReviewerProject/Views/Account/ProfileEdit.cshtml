@@ -86,7 +86,13 @@
         </div>
     </div>
 }
+<div>
+    @Html.ActionLink("View the Threads that you have posted", "ListOfThreadsByUser", new { controller = "Threads", id = ViewBag.UserID }, null) |
+    @Html.ActionLink("View Your Thread Comments", "ListOfCommentsByUser", new { controller = "ThreadComments", id = ViewBag.UserID }, null)
+</div>
 
+<br/>
+<br/>
 <div>
     @Html.ActionLink("Back to Home", "Index", "Home")
 </div>

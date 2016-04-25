@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace ReviewerProject.Models
 {
@@ -16,5 +17,11 @@ namespace ReviewerProject.Models
 
         [Display(Name="Thread ID")]
         public int ThreadID { get; set; }
+
+        public string UserID { get; set; }
+        public virtual ApplicationUser User { get; set; }
+        //[Display(Name="User")]
+        //public int UserID { get; set; }
+
     }
 }

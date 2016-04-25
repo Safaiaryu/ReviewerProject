@@ -66,7 +66,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.MagiciteAbilty)
         </td>
-
+        <td>
+            @Html.ActionLink("Tips", "ListOfTipsByEidolonUser", new { controller = "GameTips", id = item.ID }, null)
+        </td>
     </tr>
 }
 
